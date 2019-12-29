@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Books {
@@ -18,7 +19,8 @@ public class Books {
 	private Long bid;
 	private String title;
 	private String isbn;
-	private String publisher;
+	@OneToOne
+	private Publisher publisher;
 	@ManyToMany
 	@JoinTable(name="author_books",joinColumns = @JoinColumn(name="book_id"),
 	inverseJoinColumns = @JoinColumn(name="author_id"))
@@ -38,9 +40,8 @@ public class Books {
 	 * @param isbn
 	 * @param publisher
 	 */
-	public Books(Long bid,String title, String isbn, String publisher) {
+	public Books(String title, String isbn, Publisher publisher) {
 
-		this.bid = bid;
 		this.title = title;
 		this.isbn = isbn;
 		this.publisher = publisher;
@@ -52,8 +53,7 @@ public class Books {
 	 * @param publisher
 	 * @param author
 	 */
-	public Books(Long bid, String title, String isbn, String publisher, Set<Author> author) {
-		this.bid = bid;
+	public Books( String title, String isbn, Publisher publisher, Set<Author> author) {
 		this.title = title;
 		this.isbn = isbn;
 		this.publisher = publisher;
@@ -71,10 +71,10 @@ public class Books {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	public String getPublisher() {
+	public Publisher getPublisher() {
 		return publisher;
 	}
-	public void setPublisher(String publisher) {
+	public void setPublisher(Publisher publisher) {
 		this.publisher = publisher;
 	}
 	public Set<Author> getAuthor() {
