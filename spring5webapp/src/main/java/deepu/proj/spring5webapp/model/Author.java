@@ -30,11 +30,11 @@ public class Author {
 	 * @param firstName
 	 * @param lastName
 	 */
-	public Author(Long id,String firstName, String lastName) {
-		this.id = id;
+	public Author(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	
 	
 	/**
 	 * @param id
@@ -42,8 +42,7 @@ public class Author {
 	 * @param lastName
 	 * @param books
 	 */
-	public Author(Long id, String firstName, String lastName, Set<Books> books) {
-		this.id = id;
+	public Author( String firstName, String lastName, Set<Books> books) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.books = books;
